@@ -1,7 +1,10 @@
 package com.ganache.icarus.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +14,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "signup")
 @Data
+@Builder
+@AllArgsConstructor
 public class Signup
 {
 
@@ -27,23 +32,27 @@ public class Signup
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
     @Enumerated(EnumType.STRING)
-    @Column(name = "gender", columnDefinition = "gender_enum") // Matches PostgreSQL ENUM type
+    @Column(name = "gender")
     private Gender gender;
     @Column(name = "phone_number")
+    @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid phone number")
     private String phoneNumber;
+
     @Column(name = "alt_phone_number")
+    @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid phone number")
     private String altPhoneNumber;
+    @Email
     @Column(name = "email")
     private String email;
     @Column(name = "address")
     private String address;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "profession", columnDefinition = "profession_enum")
+    @Column(name = "profession")
     private Profession profession;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "education", columnDefinition = "education_enum")
+    @Column(name = "education")
     private Education education;
     @Column(name = "past_association")
     private String past_association;
@@ -57,4 +66,8 @@ public class Signup
     private boolean onlineVolunteer;
     @Column(name = "ground_support")
     private boolean groundSupport;
+
+    public Signup() {
+
+    }
 }

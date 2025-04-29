@@ -14,12 +14,5 @@ public enum Profession {
     Retired,
     Unemployed,
     Other;
-    @JsonCreator
-    public static Profession fromString(String key) {
-        return Arrays.stream(Profession.values())
-                .filter(p -> p.name().equalsIgnoreCase(key))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Invalid value for Profession: " + key));
-    }
 }
 
