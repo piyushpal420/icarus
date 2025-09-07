@@ -23,7 +23,6 @@ public class Signup
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
     @Column(name = "name")
     private String name;
     @Column(name = "age")
@@ -67,7 +66,8 @@ public class Signup
     @Column(name = "ground_support")
     private boolean groundSupport;
 
-    public Signup() {
+    public Signup()
+    {
 
     }
 }
